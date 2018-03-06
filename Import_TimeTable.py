@@ -4,8 +4,8 @@ import logging
 
 class TimetableService:
 
-    def __init__(self, request_storage_service):
-        self.request_storage_service = request_storage_service
+    #def __init__(self, request_storage_service):
+        #self.request_storage_service = request_storage_service
 
     def get_course_data(self, course_request):
         """
@@ -33,7 +33,11 @@ class TimetableService:
                                     'crnl': 'no_value'
                                     'classyear': '2008'
                                     'searchtype': 'Subject + Area%28s%29'
-                                    ''}
+                                    'termradio': 'allterms'
+                                    'terms': 'no_value'
+                                    'subjectradio': 'allsubjects
+                                    'hoursradio': 'allhours'
+                                    'sortorder': 'dept'}
 
 
         soup = BeautifulSoup(search_results, 'html.parser')
@@ -58,7 +62,8 @@ class TimetableService:
             big_ass_course_table.add(course_data)
 
             row_data = row_data.next_sibling.next_sibling
-
-        logging.info("Could not find course. Removing from watch list")
-        self.request_storage_service.remove(course_request)
-        return None
+        
+        return big_ass_course_table 
+        #logging.info("Could not find course. Removing from watch list")
+        #self.request_storage_service.remove(course_request)
+        #return None
